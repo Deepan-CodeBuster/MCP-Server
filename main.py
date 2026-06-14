@@ -1,6 +1,4 @@
-def main():
-    print("Hello from weather!")
+from weather import mcp
 
+app = mcp.streamable_http_app()
 
-if __name__ == "__main__":
-    main()
