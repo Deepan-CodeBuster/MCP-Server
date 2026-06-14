@@ -3,8 +3,11 @@ from typing import Any
 import httpx
 from mcp.server.fastmcp import FastMCP
 
+
 # Initialize FastMCP server
 mcp = FastMCP("weather")
+
+app = mcp.streamable_http_app()
 
 # Constants
 NWS_API_BASE = "https://api.weather.gov"
@@ -96,11 +99,7 @@ def main():
     transport = os.getenv("MCP_TRANSPORT", "stdio")
 
     if transport == "streamable-http":
-        mcp.run(
-            transport="streamable-http",
-            host="0.0.0.0",
-            port=int(os.getenv("PORT", "8000"))
-        )
+        mcp.run(transport="streamable-http")
     else:
         mcp.run(transport="stdio")
 
