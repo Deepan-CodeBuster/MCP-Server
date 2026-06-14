@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: weather-mcp
+    runtime: python
+
+    buildCommand: |
+      pip install uv
+      uv sync
+
+    startCommand: |
+      MCP_TRANSPORT=streamable-http uv run weather.py
+
+    envVars:
+      - key: MCP_TRANSPORT
+        value: streamable-http
